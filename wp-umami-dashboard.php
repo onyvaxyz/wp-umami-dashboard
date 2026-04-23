@@ -32,7 +32,7 @@ require_once JEJERESOURCES_UMAMI_PLUGIN_DIR . 'vendor/plugin-update-checker/plug
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 PucFactory::buildUpdateChecker(
-	'https://github.com/phillencolin/wp-umami-dashboard/',
+	'https://github.com/onyvaxyz/wp-umami-dashboard/',
 	__FILE__,
 	'wp-umami-dashboard'
 );
