@@ -6,7 +6,7 @@
  * Author: onyva.xyz
  * License: GPL v2 or later
  * Text Domain: wp-umami-dashboard
- * Update URI: https://github.com/jejeresources/wp-umami-dashboard
+ * Update URI: https://github.com/phillencolin/wp-umami-dashboard
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,6 +26,16 @@ require_once JEJERESOURCES_UMAMI_PLUGIN_DIR . 'includes/class-settings.php';
 require_once JEJERESOURCES_UMAMI_PLUGIN_DIR . 'includes/class-analytics-page.php';
 require_once JEJERESOURCES_UMAMI_PLUGIN_DIR . 'includes/class-dashboard-widget.php';
 require_once JEJERESOURCES_UMAMI_PLUGIN_DIR . 'includes/class-plugin.php';
+
+// Auto-Update via GitHub Releases
+require_once JEJERESOURCES_UMAMI_PLUGIN_DIR . 'vendor/plugin-update-checker/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+PucFactory::buildUpdateChecker(
+	'https://github.com/phillencolin/wp-umami-dashboard/',
+	__FILE__,
+	'wp-umami-dashboard'
+);
 
 // Plugin initialisieren
 new Jejeresources_Umami_Plugin();
