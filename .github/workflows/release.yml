@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ZIP erstellen
+        run: |
+          mkdir -p wp-umami-dashboard
+          rsync -av --exclude='.git' \
+            --exclude='.github' \
+            --exclude='AGENTS.md' \
+            --exclude='projektordner' \
+            . wp-umami-dashboard/
+          zip -r wp-umami-dashboard.zip wp-umami-dashboard/
+
+      - name: An Release anhängen
+        uses: softprops/action-gh-release@v2
+        with:
+          files: wp-umami-dashboard.zip
