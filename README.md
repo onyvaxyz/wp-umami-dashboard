@@ -2,7 +2,7 @@
 
 *[See English version below](#wp-umami-dashboard-1)*
 
-Zeigt deine [Umami Analytics](https://umami.is) Statistiken direkt im WordPress-Backend an – ohne Tracking-Skript, ohne Datenweitergabe, direkt via API.
+Zeigt deine [Umami Analytics](https://umami.is) Statistiken direkt im WordPress-Backend an – direkt via API.
 
 > Dieses Plugin wurde vollständig per Vibe-Coding entwickelt. Details zur Architektur für KI-Agenten findest du in [AGENTS.md](AGENTS.md).
 
@@ -42,7 +42,7 @@ GPL v2 or later
 
 # WP Umami Dashboard
 
-Displays your [Umami Analytics](https://umami.is) statistics directly in the WordPress backend – no tracking script, no data sharing, directly via API.
+Displays your [Umami Analytics](https://umami.is) statistics directly in the WordPress backend – directly via API.
 
 > This plugin was developed entirely by vibe-coding. Architecture details for AI agents can be found in [AGENTS.md](AGENTS.md).
 
