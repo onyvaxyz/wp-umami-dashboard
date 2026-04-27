@@ -74,19 +74,19 @@ class Jejeresources_Umami_Plugin {
 				JEJERESOURCES_UMAMI_VERSION
 			);
 
-			// CDN-Ressourcen
+			// Lokal gebündelte Vendor-Ressourcen (eigener Handle-Prefix vermeidet Konflikte mit anderen Plugins)
 			wp_enqueue_script(
-				'chartjs',
-				'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
+				'umami-chartjs',
+				JEJERESOURCES_UMAMI_PLUGIN_URL . 'assets/vendor/chartjs/chart.umd.min.js',
 				array(),
 				'4.4.0',
 				true
 			);
 
 			wp_enqueue_script(
-				'chartjs-adapter-date-fns',
-				'https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js',
-				array( 'chartjs' ),
+				'umami-chartjs-adapter-date-fns',
+				JEJERESOURCES_UMAMI_PLUGIN_URL . 'assets/vendor/chartjs/chartjs-adapter-date-fns.bundle.min.js',
+				array( 'umami-chartjs' ),
 				'3.0.0',
 				true
 			);
@@ -111,7 +111,7 @@ class Jejeresources_Umami_Plugin {
 			wp_enqueue_script(
 				'umami-core',
 				JEJERESOURCES_UMAMI_PLUGIN_URL . 'assets/js/core.js',
-				array( 'jquery', 'chartjs', 'chartjs-adapter-date-fns', 'umami-helpers' ),
+				array( 'jquery', 'umami-chartjs', 'umami-chartjs-adapter-date-fns', 'umami-helpers' ),
 				JEJERESOURCES_UMAMI_VERSION,
 				true
 			);
