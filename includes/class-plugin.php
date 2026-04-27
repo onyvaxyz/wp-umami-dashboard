@@ -91,13 +91,6 @@ class Jejeresources_Umami_Plugin {
 				true
 			);
 
-			wp_enqueue_style(
-				'bootstrap-icons',
-				'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css',
-				array(),
-				'1.11.3'
-			);
-
 			// Helpers JS
 			wp_enqueue_script(
 				'umami-helpers',

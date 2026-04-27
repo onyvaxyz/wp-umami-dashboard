@@ -17,7 +17,7 @@
 
 			var html = '<div class="umami-section" id="umami-section-pages">';
 			html += '<div class="umami-section-header">';
-			html += '<h3><i class="bi bi-file-earmark-text"></i> Seiten</h3>';
+			html += '<h3>' + H.icon('file-earmark-text') + ' Seiten</h3>';
 			html += '</div>';
 			html += '<div class="umami-section-content">';
 			html += '<div class="umami-pages-list">';

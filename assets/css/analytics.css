@@ -207,16 +207,14 @@
 }
 
 .umami-device-icon {
-	font-size: 48px;
 	margin-bottom: 16px;
-	background: linear-gradient(135deg, var(--umami-gradient-start) 0%, var(--umami-gradient-end) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
+	line-height: 0;
 }
 
-.umami-device-icon i {
-	display: block;
+.umami-device-icon svg {
+	width: 48px;
+	height: 48px;
+	fill: url('#umami-gradient');
 }
 
 .umami-device-info {
@@ -309,9 +307,10 @@
 	gap: 8px;
 }
 
-.umami-section h3 i {
+.umami-section h3 svg {
 	color: var(--umami-gradient-start);
-	font-size: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 /* Lists with Progress Bars */
@@ -342,9 +341,17 @@
 	gap: 8px;
 }
 
+/* Inline-SVG-Icons (umami-icon Helper) */
+.umami-icon {
+	display: inline-block;
+	vertical-align: -0.125em;
+	flex-shrink: 0;
+}
+
 .umami-list-icon {
-	font-size: 16px;
 	color: #646970;
+	width: 16px;
+	height: 16px;
 	flex-shrink: 0;
 }
 
@@ -550,8 +557,9 @@
 }
 
 @media screen and (max-width: 600px) {
-	.umami-device-icon {
-		font-size: 36px;
+	.umami-device-icon svg {
+		width: 36px;
+		height: 36px;
 	}
 }
 

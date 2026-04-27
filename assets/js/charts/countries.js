@@ -14,7 +14,7 @@
 
 			var html = '<div class="umami-section" id="umami-section-countries">';
 			html += '<div class="umami-section-header">';
-			html += '<h3><i class="bi bi-globe"></i> Länder</h3>';
+			html += '<h3>' + H.icon('globe') + ' Länder</h3>';
 			html += '</div>';
 			html += '<div class="umami-section-content">';
 			html += this._renderList(items);

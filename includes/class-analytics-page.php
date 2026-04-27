@@ -70,8 +70,25 @@ class Jejeresources_Umami_Analytics_Page {
 			return;
 		}
 
+		$gradient_start = get_option( 'umami_gradient_start', '#667eea' );
+		$gradient_end   = get_option( 'umami_gradient_end', '#764ba2' );
+		if ( ! preg_match( '/^#[a-fA-F0-9]{6}$/', $gradient_start ) ) {
+			$gradient_start = '#667eea';
+		}
+		if ( ! preg_match( '/^#[a-fA-F0-9]{6}$/', $gradient_end ) ) {
+			$gradient_end = '#764ba2';
+		}
+
 		?>
 		<div class="wrap umami-analytics-page">
+			<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+				<defs>
+					<linearGradient id="umami-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+						<stop offset="0%" stop-color="<?php echo esc_attr( $gradient_start ); ?>" />
+						<stop offset="100%" stop-color="<?php echo esc_attr( $gradient_end ); ?>" />
+					</linearGradient>
+				</defs>
+			</svg>
 			<div class="umami-header-bar">
 				<h1 class="umami-page-title">
 					<span class="dashicons dashicons-chart-area"></span>

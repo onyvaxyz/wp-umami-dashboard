@@ -14,7 +14,7 @@
 
 			var html = '<div class="umami-section" id="umami-section-events">';
 			html += '<div class="umami-section-header">';
-			html += '<h3><i class="bi bi-lightning-charge"></i> Events</h3>';
+			html += '<h3>' + H.icon('lightning-charge') + ' Events</h3>';
 			html += '</div>';
 			html += '<div class="umami-section-content">';
 			html += this._renderList(items);

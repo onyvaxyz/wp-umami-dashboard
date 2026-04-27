@@ -14,7 +14,7 @@
 
 			var html = '<div class="umami-section" id="umami-section-sources">';
 			html += '<div class="umami-section-header">';
-			html += '<h3><i class="bi bi-link-45deg"></i> Quellen</h3>';
+			html += '<h3>' + H.icon('link-45deg') + ' Quellen</h3>';
 			html += '</div>';
 			html += '<div class="umami-section-content">';
 			html += this._renderList(items);

@@ -14,7 +14,7 @@
 
 			var html = '<div class="umami-section" id="umami-section-os">';
 			html += '<div class="umami-section-header">';
-			html += '<h3><i class="bi bi-display"></i> Betriebssysteme</h3>';
+			html += '<h3>' + H.icon('display') + ' Betriebssysteme</h3>';
 			html += '</div>';
 			html += '<div class="umami-section-content">';
 			html += this._renderList(items);
@@ -29,7 +29,7 @@
 			items.slice(0, 10).forEach(function (item) {
 				var percentage = maxValue > 0 ? (item.y / maxValue) * 100 : 0;
 				html += '<div class="umami-list-item"><div class="umami-list-header"><span class="umami-list-label">';
-				html += '<i class="bi ' + H.getOSIconClass(item.x) + ' umami-list-icon"></i>';
+				html += H.icon(H.getOSIcon(item.x), 'umami-list-icon');
 				html += H.escapeHtml(item.x);
 				html += '</span><span class="umami-list-value">' + item.y.toLocaleString() + '</span></div>';
 				html += '<div class="umami-progress-bar"><div class="umami-progress-fill" style="width: ' + percentage + '%"></div></div></div>';
