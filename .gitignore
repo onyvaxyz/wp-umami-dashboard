@@ -1,2 +1,5 @@
 projektordner/
 .wp-env.json
+
+# Lokale Setup-Artefakte
+vendor/*.zip
