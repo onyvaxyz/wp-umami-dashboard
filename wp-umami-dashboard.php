@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Umami Dashboard
  * Description: Zeigt Umami Analytics Statistiken via API im WordPress Dashboard
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: onyva.xyz
  * License: GPL v2 or later
  * Text Domain: wp-umami-dashboard
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JEJERESOURCES_UMAMI_VERSION', '1.1.0' );
+define( 'JEJERESOURCES_UMAMI_VERSION', '1.2.0' );
 define( 'JEJERESOURCES_UMAMI_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'JEJERESOURCES_UMAMI_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'JEJERESOURCES_UMAMI_PLUGIN_FILE', __FILE__ );
