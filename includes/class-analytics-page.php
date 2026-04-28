@@ -151,6 +151,76 @@ class Jejeresources_Umami_Analytics_Page {
 	}
 
 	/**
+	 * AJAX Handler für Favicon-Proxy
+	 *
+	 * Lädt Favicons serverseitig von Google und cacht sie als Transient.
+	 * Damit verlässt die IP des Admins niemals den eigenen Server (DSGVO).
+	 */
+	public function ajax_favicon_proxy() {
+		if ( ! Jejeresources_Umami_Permissions::user_can_view_stats() ) {
+			status_header( 403 );
+			exit;
+		}
+
+		$domain = isset( $_GET['domain'] ) ? sanitize_text_field( wp_unslash( $_GET['domain'] ) ) : '';
+
+		// Strikte Domain-Validierung: erlaubt Subdomains, blockiert IPs/localhost.
+		if ( ! preg_match( '/^[a-zA-Z0-9][a-zA-Z0-9.\-]{0,253}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/', $domain ) ) {
+			status_header( 400 );
+			exit;
+		}
+
+		// SSRF-Schutz: keine privaten/reservierten IP-Ranges erlauben.
+		$ip = gethostbyname( $domain );
+		if ( $ip === $domain || filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) === false ) {
+			status_header( 400 );
+			exit;
+		}
+
+		$cache_key = 'umami_favicon_' . md5( $domain );
+		$cached    = get_transient( $cache_key );
+
+		if ( $cached !== false ) {
+			$decoded = base64_decode( $cached['body'] );
+			header( 'Content-Type: ' . $cached['type'] );
+			header( 'Cache-Control: public, max-age=604800' );
+			header( 'Content-Length: ' . strlen( $decoded ) );
+			echo $decoded; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			exit;
+		}
+
+		$response = wp_remote_get(
+			'https://www.google.com/s2/favicons?domain=' . rawurlencode( $domain ) . '&sz=32',
+			array( 'timeout' => 5, 'sslverify' => true )
+		);
+
+		if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+			// Negativer Cache (1 Tag), damit nicht bei jedem Reload erneut gefragt wird.
+			set_transient( $cache_key, array( 'body' => '', 'type' => 'image/png' ), DAY_IN_SECONDS );
+			status_header( 502 );
+			exit;
+		}
+
+		$body         = wp_remote_retrieve_body( $response );
+		$content_type = wp_remote_retrieve_header( $response, 'content-type' );
+		if ( ! $content_type || strpos( $content_type, 'image/' ) !== 0 ) {
+			$content_type = 'image/png';
+		}
+
+		set_transient(
+			$cache_key,
+			array( 'body' => base64_encode( $body ), 'type' => $content_type ),
+			WEEK_IN_SECONDS
+		);
+
+		header( 'Content-Type: ' . $content_type );
+		header( 'Cache-Control: public, max-age=604800' );
+		header( 'Content-Length: ' . strlen( $body ) );
+		echo $body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		exit;
+	}
+
+	/**
 	 * AJAX Handler für Stats - MIT NONCE-PRÜFUNG
 	 */
 	public function ajax_get_stats() {

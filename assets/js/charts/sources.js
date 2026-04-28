@@ -32,9 +32,11 @@
 
 				html += '<div class="umami-list-item"><div class="umami-list-header"><span class="umami-list-label">';
 				if (H.isValidDomain(domain)) {
-					var faviconUrl = 'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(domain) + '&sz=16';
+					// Favicon wird serverseitig über den WP-Proxy geladen (DSGVO-konform,
+					// damit die Admin-IP nicht an Google übertragen wird).
+					var faviconUrl = umamiData.ajaxurl + '?action=umami_favicon&domain=' + encodeURIComponent(domain);
 					var referrerUrl = 'https://' + encodeURIComponent(domain);
-					html += '<img src="' + faviconUrl + '" class="umami-favicon" onerror="this.style.display=\'none\'">';
+					html += '<img src="' + faviconUrl + '" class="umami-favicon" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">';
 					html += '<a href="' + referrerUrl + '" target="_blank" rel="noopener noreferrer" class="umami-referrer-link">' + H.escapeHtml(domain) + '</a>';
 				} else {
 					html += H.escapeHtml(domain);

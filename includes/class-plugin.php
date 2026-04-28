@@ -44,6 +44,7 @@ class Jejeresources_Umami_Plugin {
 		add_action( 'wp_dashboard_setup', array( $this->dashboard_widget, 'add_dashboard_widget' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'wp_ajax_umami_get_stats', array( $this->analytics_page, 'ajax_get_stats' ) );
+		add_action( 'wp_ajax_umami_favicon', array( $this->analytics_page, 'ajax_favicon_proxy' ) );
 	}
 
 	/**

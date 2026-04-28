@@ -162,7 +162,9 @@
 			if (!domain || domain === '(Direkt)') {
 				return false;
 			}
-			return /^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]?\.[a-zA-Z]{2,}$/.test(domain);
+			// Erlaubt Subdomains (news.ycombinator.com) und kurze Hostnamen (t.co).
+			// Identische Validierung wie im PHP-Favicon-Proxy.
+			return /^[a-zA-Z0-9][a-zA-Z0-9.\-]{0,253}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(domain);
 		},
 
 		getCountryFlag: function (code) {
