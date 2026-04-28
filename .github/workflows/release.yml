@@ -25,3 +25,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: wp-umami-dashboard.zip
+          generate_release_notes: true
