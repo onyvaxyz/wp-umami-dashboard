@@ -567,7 +567,7 @@
 .umami-footer {
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 	background: white;
 	padding: 15px 20px;
 	border-radius: 8px;
@@ -580,6 +580,8 @@
 	display: flex;
 	align-items: center;
 	gap: 15px;
+	flex: 1 1 auto;
+	min-width: 0;
 }
 
 .umami-footer-logo {
@@ -594,6 +596,8 @@
 	line-height: 1.5;
 	text-align: left;
 	max-width: 35rem;
+	flex: 1 1 auto;
+	min-width: 0;
 }
 
 .umami-footer-text p {
@@ -627,7 +631,7 @@
 	height: 16px;
 }
 
-@media screen and (max-width: 782px) {
+@media screen and (max-width: 900px) {
 	.umami-footer {
 		flex-direction: column;
 		text-align: center;
